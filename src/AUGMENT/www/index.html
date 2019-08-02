@@ -1,0 +1,759 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="js/ncmb-latest.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/cssua.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/ui/jquery-ui.js"></script>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+<script>
+    ons.ready(function () {
+        console.log("Onsen UI is ready!");
+    });
+
+    if (ons.platform.isIPhoneX()) {
+        document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+        document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+    //画面遷移
+    document.addEventListener('init', function (event) {
+        var page = event.target;
+
+        if (page.id === 're') {
+            page.querySelector('#push-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('re-ri.html', { data: { title: 'Page 2' } })
+            };
+            page.querySelector('#to-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('toukou.html')
+            }
+            page.querySelector('#tu-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('tuika.html')
+            }
+            page.querySelector('#tou-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('touroku.html')
+            }
+            //リクエスト回答
+            page.querySelector('#rians-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('ri-ans.html')
+            }
+        } else if (page.id === 're-ri') {
+            page.querySelector('#next-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('anser.html')
+            }
+        } else if (page.id === 'touroku') {
+            page.querySelector('#delete-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('delete.html')
+            }
+        } else if (page.id === 'touroku') {
+            page.querySelector('#insert-button').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('tuika.html')
+            }
+        }
+    });
+</script>
+
+<body>
+    <!--スタート画面-->
+    <div data-role="page" id="StartPage">
+        <header data-role="header" data-position="fixed" data-theme="b">
+        </header>
+        <section data-role="content" style="overflow: unset;">
+            <img src="images\cdts.png" width="90%" ,height="50%" id="logo">
+
+            <a href="#IDRegisterPage" id="RegisterBtn" data-role="button" data-theme="b">新規会員登録</a>
+            <a href="#IDLoginPage" id="LoginBtn" data-role="button" data-theme="b">ログイン</a>
+        </section>
+    </div>
+
+    <!--ログインページ -->
+    <div data-role="page" id="IDLoginPage">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>ログイン</h1>
+        </header>
+        <section data-role="content">
+            メールアドレス
+            <input type="text" id="login_username">
+            パスワード
+            <input type="password" id="IDLogin_password">
+            <a href="#" id="IDLoginBtn" data-role="button" data-inline="false" data-theme="b"
+                onclick="SetTweetTable();">ログインする</a>
+        </section>
+    </div>
+
+    <!--新規登録ページ -->
+    <div data-role="page" id="IDRegisterPage">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>新規会員登録</h1>
+        </header>
+        <section data-role="content">
+            <h1>新規アカウント登録</h1>
+            メールアドレス
+            <input type="text" id="reg_username">
+            パスワード
+            <input type="password" id="IDReg_password">
+            <a href="#" id="IDRegisterBtn" data-role="button" data-inline="false" data-theme="b"
+                onclick="SetTweetTable();">登録する</a>
+            <a href="#IDLoginPage" data-role="button" data-mini="true" data-inline="true" data-theme="b">戻る</a>
+        </section>
+    </div>
+
+    <!--プロフィール情報-->
+    <div data-role="page" id="ProfilePage">
+        <header data-role="header" data-position="fixed">
+            <h1>プロフィール情報入力</h1>
+            名前を入力してください(本名のみ)
+            (苗字)(名前)<br>
+            <input type="text" id="firstname">
+            <input type="text" id="lastname">
+            <br>
+            <!--フォームのアクションで保存先に飛ばす↓-->
+            <form method="post" action="">
+                <p>性別<br>
+                    <input type="radio" name="q1" value="女"> 女
+                    <input type="radio" name="q1" value="男"> 男
+                    <input type="radio" name="q1" value="その他"> その他
+                    ​
+                    <p>年齢</p>
+                    <select name="year">
+                        <option value="">-</option>
+                        <option value="1980">1980</option>
+                        <option value="1981">1981</option>
+                        <option value="1982">1982</option>
+                        <option value="1983">1983</option>
+                        <option value="1984">1984</option>
+                        <option value="1985">1985</option>
+                        <option value="1986">1986</option>
+                        <option value="1987">1987</option>
+                        <option value="1988">1988</option>
+                        <option value="1989">1989</option>
+                        <option value="1990">1990</option>
+                        <option value="1991">1991</option>
+                        <option value="1992">1992</option>
+                        <option value="1993">1993</option>
+                        <option value="1994">1994</option>
+                        <option value="1995">1995</option>
+                        <option value="1996">1996</option>
+                        <option value="1997">1997</option>
+                        <option value="1998">1998</option>
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                    </select>　年
+                    ​
+                    <select name="month">
+                        <option value="">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>月
+                    ​
+                    <select name="day">
+                        <option value="">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>日
+                    ​
+                    <select name="age">
+                        <option value="">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                    </select>　歳
+                    ​
+                    <p>好きな服のジャンル</p>
+                    ​
+                    <input type="radio" name="casual">カジュアル
+                    <input type="radio" name="">きれいめ
+                    <input type="radio" name="street">ストリート<br>
+                    <input type="radio" name="mode">モード
+                    <input type="radio" name="retro">レトロ
+                    <input type="radio" name="business">ビジネス
+                    <input type="radio" name="visual">ビジュアル
+                    <input type="radio" name="gal">ギャル
+                    <input type="radio" name="harajuku">原宿
+                    <input type="radio" name="Amecasual">アメリカンカジュアル<br>
+                    <input type="radio" name="rock">ロック
+                    <input type="radio" name="fa-other">その他
+                    ​
+                    <a href="#TopPage" data-role="button" data-inline="false" data-theme="b"
+                        onclick="SetTweetTable();">登録する</a>
+    </div>
+
+    <!-- TL -->
+    <div data-role="page" id="TopPage">
+        <header data-role="header" data-position="fixed">
+            <a href="#Menu" data-icon="plus" class="ui-btn-left">メニュー</a>
+            <h1>タイムライン</h1>
+            <a href="#requestbord" onclick="SetRequestList()">リクエストボード</a>
+        </header>
+        <section data-role="content">
+            <ul id="TopListView" data-role="listview" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"
+                data-split-icon="delete">
+            </ul>
+            <style>
+                table#tb1 img {
+                    width: 300px;
+                    height: 250px;
+                }
+            </style>
+
+            <table id="tb1" border="1">
+            </table>
+        </section>
+    </div>
+
+    <!-- リクエスト -->
+    <div data-role="page" id="request">
+        <header data-role="header">
+            <a href="#Menu">戻る</a>
+            <h1>リクエスト</h1>
+        </header>
+        目的
+        <textarea id="purposetext"></textarea>
+        時間帯
+        <select id="time">
+            <option value="朝">朝</option>
+            <option value="昼">昼</option>
+            <option value="夕方">夕方</option>
+            <option value="夜">夜</option>
+            <option value="一日">一日</option>
+            <option value="午前">午前</option>
+            <option value="午後">午後</option>
+        </select>
+        年齢層
+        <select id="age">
+            <option value="10代">10代</option>
+            <option value="20代">20代</option>
+            <option value="30代">30代</option>
+            <option value="40代">40代</option>
+        </select>
+        要望及び備考
+        <textarea id="pointtext"></textarea>
+        <input type="submit" value="投稿" id="req-button" onclick="OnButtonClick()">
+    </div>
+
+    <!--メニュー一覧-->
+    <div data-role="page" id="Menu">
+        <header data-role="header" data-position="fixed">
+            <h1>タイムライン</h1>
+            <a href="#TopPage">戻る</a>
+        </header>
+        <ul>
+            <li><a href="#toukou">投稿</a></li>
+            <li><a href="#follow">追加</a></li>
+            <li><a href="#account" onclick="SetTweetTable();">アカウント</a></li>
+            <li><a href="#request">リクエスト</a></li>
+            <li><a href="#requestbord" onclick="SetRequestList()">リクエストボード</a></li>
+            <li><a href="#ri-ans">リクエスト回答</a></li>
+            <li><a href="#touroku">洋服登録</a></li>
+        </ul>
+    </div>
+
+    <!-- リクエストボード -->
+    <div data-role="page" id="requestbord">
+        <header data-role="header">
+            <a href="#TopPage">Top</a>
+            <h1>リクエストボード</h1>
+        </header>
+        <a href="#request">リクエスト</a>
+        <a href="#ri-ans">リクエスト回答</a>
+        <style>
+            ul#request_list {
+                list-style: none;
+            }
+        </style>
+        <section class="source">
+            <ul id="request_list" onclick="RequestAnswer()">
+                <!--目的-->
+                <li class="request-purpose"></li>
+                <!--時間帯-->
+                <li class="request-time"></li>
+                <!--年齢層-->
+                <li class="request-age"></li>
+                <!--要望及び備考-->
+                <li class="request-point"></li>
+            </ul>
+        </section>
+    </div>
+
+    <!--リクエスト履歴-->
+    <div data-role="page" id="re-ri" style="overflow: scroll;">
+        <header data-role="header" data-position="flexed">
+            <h1>リクエスト履歴</h1>
+            <a href="#Menu">戻る</a>
+        </header>
+        <section section data-role="content" style="overflow-x: hidden;overflow-y: scroll;">
+
+            <div style="text-align: center;"><b>リクエスト履歴</b><br></div>
+            <!--DB-->
+            <p>目的 &ensp;<input type="text"></p>
+            <p>時間帯 &ensp;<input type="text"></p>
+            <p>年齢層 &ensp;<input type="text"></p>
+            <p>要望及び備考 &ensp;<input type="text"></p>
+            <!--DB終わり-->
+            <div style="text-align: center;">
+                <ons-button>回答待ち</ons-button><br><br>
+            </div>
+
+            <!--DB-->
+            <p>目的 &ensp;<input type="text" id=></p>
+            <p>時間帯 &ensp;<input type="text"></p>
+            <p>年齢層 &ensp;<input type="text"></p>
+            <p>要望及び備考 &ensp;<input type="text"></p>
+            <!--DB終わり-->
+
+            <div style="text-align: center;">
+                <button><a href="#ri-ans" id="next-button" data-role="button">回答確認</a></button>
+            </div>
+        </section>
+    </div>
+
+    <!--リクエスト回答画面-->
+    <div data-role="page" id="ri-ans">
+        <header data-role="header" data-position="fixed">
+            <h1>リクエスト回答</h1>
+            <a href="#Menu">戻る</a>
+        </header>
+        <!-- 編集ボタン -->
+
+        リクエスト回答<br>
+        <center>回答するリクエスト内容</center>
+        <!--DB-->
+        <div name="RequestDetails">
+            <p>目的</p><br>
+            <p id="purpose_text"><input type="text"></p>
+            <p>時間帯</p><br>
+            <p id="time_text"><input type="text"></p>
+            <p>年齢層</p><br>
+            <p id="age_text"><input type="text"></p>
+            <p>要望及び備考</p><br>
+            <p id="point_text"><input type="text"></p>
+        </div>
+        <!--DB終わり-->
+        &emsp; &emsp; <a class="tops" onclick="insertTops()">トップス</a> &emsp; &emsp;&emsp; <a class="outer"
+            onclick="insertOuter()">アウター</a> <br>
+        &emsp;<img id="img1" width="140" height="200" style="background-color:#FFFFFF;"> &ensp;
+        <img id="img2" width="140" height="200" style="background-color:#FFFFFF;"> &ensp;
+        <br>&emsp; &emsp; <a class="pants" onclick="insertPants()">ズボン</a> &emsp; &emsp; &emsp; &ensp;<a class="shoes"
+            onclick="insertShoes()">シューズ</a><br>
+        &emsp;<img id="img3" width="140" height="200" style="background-color:#FFFFFF;"> &ensp;
+        <img id="img4" width="140" height="200" style="background-color:#FFFFFF;"> &ensp;
+        <br>
+        <c>ポイントと備考</c><br>
+        &ensp;<textarea id="point3" rows="4" cols="40"></textarea><br>
+        <br>
+        <center><button id="RequestSave" onclick="RequestSave()">回答を送る</button>
+    </div>
+
+
+    <!--リクエスト回答確認-->
+    <div data-role="page" id="#">
+        <header data-role="header" data-position="fixed">
+            <h1>リクエスト回答確認</h1>
+        </header>
+        <div class="left">
+            <button type="button" onclick="history.back()">戻る</button>
+        </div>
+        <a>リクエスト回答確認</a><br>
+
+        &emsp; &emsp; トップス &emsp; &emsp;&emsp; アウター <br>
+        &emsp;<canvas id="SimpleCanvas" width="140" height="200" style="background-color:#FFFFFF;"></canvas> &ensp;
+        <canvas id="SimpleCanvas" width="140" height="200" style="background-color:#FFFFFF;"></canvas> &ensp;
+        <br>&emsp; &emsp; ズボン &emsp; &emsp; &emsp; &ensp; シューズ<br>
+        &emsp;<canvas id="SimpleCanvas" width="140" height="200" style="background-color:#FFFFFF;"></canvas> &ensp;
+        <canvas id="SimpleCanvas" width="140" height="200" style="background-color:#FFFFFF;"></canvas> &ensp;
+
+        <br>
+        <c>ポイントと備考</c><br>
+        &ensp;<textarea name="point3" rows="4" cols="40"></textarea><br>
+        <br>
+        <!-- 確認ボタン-->
+        <div style="text-align: center;">
+            <button>確認</button>
+        </div>
+    </div>
+
+
+    <!--投稿-->
+    <div data-role="page" id="toukou">
+        <header data-role="header" data-position="fixed">
+            <h1>投稿</h1>
+        </header>
+        <div class="left">
+            <button type="button" onclick="history.back()">戻る</button>
+        </div>
+        写真を選択してください
+        <div class="tweet">
+            <a class="tweetPicture" onclick="insertPicture()">写真</a>
+            <img id="showImage3" width="300" height="280" />
+            <br>
+            <input type="file" accept="image/jpeg" id="photo" />
+            <br>
+            <input type="text" id="filename" value="" /><br />
+        </div>
+        投稿内容を入力してください
+        <div id="detail">
+            <p>
+                <textarea id="points" rows="30" cols="400"></textarea>
+            </p>
+        </div>
+        <a href="#TopPage" id="TweetButton" data-role="button" onclick="tweetClick()">投稿する</a>
+    </div>
+
+    <!--洋服登録-->
+    <div data-role="page" id="touroku">
+        <header data-role="header" data-position="fixed">
+            <a href="#Menu" id="backbutton">戻る</a>
+            <h1>洋服登録</h1>
+            <a href="#photoitiran" id="fhoto" onclick="Photoitiran()">洋服一覧</a>
+        </header>
+        <center><a class="tweetPicture" onclick="insertPicture1()">洋服追加</a>
+            <img id="showImage4" width="300" height="280" />
+    </div>
+
+    <!-- 洋服一覧表示 -->
+    <div data-role="page" id="photoitiran">
+        <header data-role="header">
+            <a href="#touroku" id="backbutton">戻る</a>
+            <h1>洋服一覧</h1>
+        </header>
+        <table id="tb2" border="1">
+        </table>
+        <style>
+            table#tb2 img {
+                width: 300px;
+                height: 250px;
+            }
+        </style>
+    </div>
+
+    <!--洋服削除-->
+    <div data-role="page" id="delete">
+        <header data-role="header" data-position="fixed">
+            <h1>洋服削除</h1>
+        </header>
+        <div class="left"><button type="button" onclick="history.back()">戻る</button></div>
+        <center><button>選択した服を削除する</button>
+    </div>
+
+    <!--フォロー追加-->
+    <div data-role="page" id="follow">
+        <header data-role="header" data-position="fixed">
+            <h1>追加</h1>
+        </header>
+        <button type="button" onclick="history.back()">戻る</button>
+        <a href="#QRdisplay">QRコード表示</a>
+        <a href="#QRreading">QRコード読み取り</a>
+    </div>
+
+    <div data-role="page" id="QRdisplay">
+        <header data-role="header" data-position="fixed" data-theme="c">
+            <h1>マイQRコード</h1>
+        </header>
+        <button type="button" onclick="history.back();">戻る
+    </div>
+
+    <!--マイアカウント-->
+    <div data-role="page" id="account">
+        <header data-role="header” data-position=" fixed">
+            <h1>アカウント</h1>
+        </header>
+        <!-- ボタン表示領域 -->
+        <button type="button" onclick="history.back()">戻る</button>
+        <!-- プロフィール画像表示領域 -->
+        <div class="img-center">
+            <a href="#AccountSetting" data-role=“button” data-theme="b">編集</a>
+            <img src="images/IMG_8598.JPG" class="account-img" width="200" height="200">
+        </div>
+        <br>
+        <!-- 名前表示領域 -->
+        <div class="account-name">
+            <!-- DBから名前を取得 -->
+            <p>西村　拳志</p>
+        </div>
+        <!-- プロフィール情報表示領域 -->
+        <!-- DBからプロフィール情報を取得して表示 -->
+        <!-- 属性 -->
+        <div class="text-left">
+            <style>
+                ul {
+                    list-style: none;
+                }
+            </style>
+            <ul class="account-list">
+                <li class="lists1">メールアドレス</li>
+                <li class="lists2">php@gmail.com</li>
+                &emsp;
+                <li class="lists3">パスワード</li>
+                <li class="lists4">********</li>
+            </ul>
+            <table id="tb1" border="1">
+            </table>
+        </div>
+    </div>
+    <!--マイアカウント編集-->
+    <div data-role="page" id="AccountSetting">
+        <header data-role="header" data-position="fixed">
+            <h1>アカウント編集</h1>
+        </header>
+        <!-- ボタン表示領域 -->
+        <button type="button" onclick="history.back()">戻る</button>
+        <!-- プロフィール画像表示領域 -->
+        <div class="img-center">
+            <!-- DBから画像を取得 -->
+            <img src="images/IMG_8598.JPG" width="200" height="200" id="showImage4">
+        </div>
+        <!-- 名前表示領域 -->
+        <div class="text-center">
+            <!-- DBから名前を取得 -->
+            <p>西村　拳志</p>
+        </div>
+        <!-- プロフィール情報表示領域 -->
+        <!-- DBからプロフィール情報を取得して表示 -->
+        <div class="text-left-float">
+            <ul>
+                <li>メールアドレス</li>
+                <br>
+                <li>パスワード</li>
+            </ul>
+        </div>
+        <div class="text-right-float">
+            <ul>
+                <input type="email" name="e-mail" value="php@gmail.com">
+                <br>
+                <input type="password" name="password" value="********">
+            </ul>
+        </div>
+        <br>
+        <a href="#withdrawal" data-role="button" data-theme="b">脱退</a>
+        <p>麻生情報ビジネス専門学校</p>
+        <p class="text-left">所属</p>
+        <input type="text" name="belongs" value="情報工学科">
+        <div class="button-center">
+            <a href="#account" data-role="button" data-theme="b">確定</a>
+        </div>
+    </div>
+    <!--脱退選択-->
+    <div data-role="page" id="withdrawal">
+
+        <header data-role="header" data-position="fixed">
+        </header>
+        <div class="center">
+            <p>本当に脱退しますか？</p>
+            <a href="#StartPage" data-role="button" data-theme="b">はい</a>
+            <br>
+            <a href="#account" data-role="button" data-theme="b">いいえ</a>
+        </div>
+    </div>
+
+    <!--投稿ページ-->
+    <div data-role="page" id="AddPage">
+        <header data-role="header" data-position="fixed">
+            <a data-role="button" data-rel="back" data-icon="back">戻る</a>
+            <button id="btn" type="button">写真</button>
+            <div id="top">
+                <h1>投稿</h1>
+        </header>
+        <section data-role="content">
+            <label for="Memo">:Tweet</label>
+            <textarea id="Memo"></textarea>
+            <input type="button" data-icon="check" id="SaveBtn">投稿する</a>
+            <input type="file" id="filename" value="">
+            <img id="file-preview" style="background-color=unset">
+        </section>
+    </div>
+    <script>
+        //ツイート写真撮影
+        function insertPicture() {
+            navigator.camera.getPicture(onSuccess, onFail,
+                { quality: 50, destinationType: Camera.DestinationType.DATA_URL });
+
+            function onSuccess(imageData) {
+                var image = document.getElementById('showImage3');
+                image.src = "data:image/jpeg;base64," + imageData;
+
+                var byteCharacters = toBlob(imageData);
+                ncmb.File.upload("test.png", byteCharacters)
+                    .then(function () {
+                        //写真撮影完了
+
+                    })
+                    .catch(function (error) {
+                        alert(JSON.stringify(error));
+                    });
+            }
+
+            function onFail(message) {
+                alert('カメラエラーです: ' + message);
+            }
+        }
+        //洋服登録
+        function insertPicture1() {
+            navigator.camera.getPicture(onSuccess, onFail,
+                { quality: 50, destinationType: Camera.DestinationType.DATA_URL });
+
+            function onSuccess(imageData) {
+                var image = document.getElementById('showImage4');
+                image.src = "data:image/jpeg;base64," + imageData;
+                // 1~100
+                var random = Math.ceil(Math.random() * 100);
+
+                var byteCharacters1 = toBlob(imageData);
+                ncmb.File.upload(random, byteCharacters1)
+                    .then(function () {
+                        alert("撮影成功！")
+                        var Photo = ncmb.DataStore("photo");
+                        var photo = new Photo();
+                        var nowuser = localStorage.getItem("userName1");
+                        photo.set("photoimg", random)
+                            .set("login", nowuser)
+                            .save();
+                    })
+                    .catch(function (error) {
+                        alert(JSON.stringify(error));
+                    });
+            }
+
+            function onFail(message) {
+                alert('カメラエラーです: ' + message);
+            }
+        }
+        function toBlob(base64) {
+            var bin = atob(base64.replace(/^.*,/, ""));
+            var buffer = new Uint8Array(bin.length);
+            for (var i = 0; i < bin.length; i++) {
+                buffer[i] = bin.charCodeAt(i);
+            }
+            try {
+                var blob = new Blob([buffer.buffer], {
+                    type: "image/jpeg"
+                });
+            } catch (e) {
+                return false;
+            }
+            return blob;
+        }
+    </script>
+</body>
+</html>
